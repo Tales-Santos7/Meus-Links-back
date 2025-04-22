@@ -62,7 +62,7 @@ app.get('/painel.html', (req, res) => {
 app.use(express.static(publicPath));
 
 // Rota principal (fallback para o site principal)
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(publicPath, 'index.html'));
 });
 
