@@ -25,25 +25,25 @@ const Link = mongoose.model('Link', new mongoose.Schema({
 }));
 
 // API
-app.get('https://links-tales.onrender.com/api/links', async (req, res) => {
+app.get('/api/links', async (req, res) => {
   const links = await Link.find();
   res.json(links);
 });
 
-app.post('https://links-tales.onrender.com/api/links', async (req, res) => {
+app.post('/api/links', async (req, res) => {
   const { title, url } = req.body;
   const novoLink = new Link({ title, url });
   await novoLink.save();
   res.status(201).json(novoLink);
 });
 
-app.put('https://links-tales.onrender.com/api/links/:id', async (req, res) => {
+app.put('/api/links/:id', async (req, res) => {
   const { title, url } = req.body;
   const linkAtualizado = await Link.findByIdAndUpdate(req.params.id, { title, url }, { new: true });
   res.json(linkAtualizado);
 });
 
-app.delete('https://links-tales.onrender.com/api/links/:id', async (req, res) => {
+app.delete('/api/links/:id', async (req, res) => {
   await Link.findByIdAndDelete(req.params.id);
   res.json({ message: 'Link apagado com sucesso.' });
 });
